@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper sissors game</title>
+</head>
+
+<body>
+    <h1>Rock Paper sissors Game</h1><br><br><br>
+    <h2>Computor choice:<span id="comutor_choice"></span></h2><br>
+    <h2>Your choice:<span id="your_choice"></span></h2><br>
+    <h2>Results:<span id="results"></span></h2><br>
+
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="sissors">Sissors</button>
+
+
+    <script>
+        const computorchoisedisplay = document.getElementById('comutor_choice')
+        const yourchoicedisplay = document.getElementById('your_choice')
+        const resultsdisplay = document.getElementById('results')
+        const possiblechoices = document.querySelectorAll('button')
+        let userchoice
+        let computerchoice
+        let result
+
+
+        possiblechoices.forEach(possiblechoice => possiblechoice.addEventListener('click', (e) => {
+            userchoice = e.target.id
+            yourchoicedisplay.innerHTML = userchoice
+
+            generatedefaultChoice()
+            getresult()
+        }))
+
+        function generatedefaultChoice() {
+            const number = Math.floor(Math.random() * 3) + 1
+
+            if (number === 1) {
+                computerchoice = 'rock'
+            }
+            if (number === 2) {
+                computerchoice = 'sissors'
+            }
+            if (number === 3) {
+                computerchoice = 'paper'
+            }
+
+            computorchoisedisplay.innerHTML = computerchoice
+
+        }
+
+        function getresult() {
+            if (computerchoice === userchoice) {
+                result = 'its draw try again!'
+            }
+            if (computerchoice === 'rock' && userchoice === 'paper') {
+                result = 'you win !'
+            }
+            if (computerchoice === 'rock' && userchoice === 'sissors') {
+                result = 'you lost !'
+            }
+            if (computerchoice === 'paper' && userchoice === 'rock') {
+                result = 'you lost !'
+            }
+            if (computerchoice === 'paper' && userchoice === 'sissors') {
+                result = 'you win !'
+            }
+            if (computerchoice === 'sissors' && userchoice === 'rock') {
+                result = 'you win !'
+            }
+            if (computerchoice === 'sissors' && userchoice === 'paper') {
+                result = 'you lost !'
+            }
+            resultsdisplay.innerHTML = result
+        }
+    </script>
+</body>
+
+</html>
